@@ -2,7 +2,7 @@
 
 namespace csharp
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -52,6 +52,27 @@ namespace csharp
                 }
             }
             return "Unknown";
+        }
+        public static void getIssuer(String number)
+        {
+            if(number.Length > 13 && number.Length < 16)
+            {
+                if(number.SubString(0, 1).Equals("4"))
+                {
+                    Console.WriteLine("Visa");
+                }
+                else
+                {
+                    if(number.SubString(0, 2).Equals("34") || number.SubString(0, 2).Equals("37"))
+                    {
+                        Console.WriteLine("AMEX");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("unknown"); 
+            }
         }
     }
 }
