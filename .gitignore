@@ -9,3 +9,5 @@ obj
 # Ignore Gradle build output directory
 build
 bin
+# Visual Code files
+.vscode
