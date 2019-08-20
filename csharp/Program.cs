@@ -95,44 +95,69 @@ namespace csharp
             Console.WriteLine(getIssuer(5105105105105106));
             Console.WriteLine(getIssuer(9111111111111111));
         }
+
         public static void getIssuer(String number)
         {
-            if(number.Length >= 13 && number.Length <= 16)
+            String onefirstLetterCreditCatd = numberCreditCard.Substring(0, 1);
+            String twoFirstsLettersCreditCatd = numberCreditCard.Substring(0, 2);
+            String fourFirstsLettersCreditCatd = numberCreditCard.Substring(0, 4)
+            if(number.Length == 13 || number.Length == 16)
             {
-                if(number.Substring(0, 1).Equals("4"))
-                {
+                verifyVisa(onefirstLetterCreditCatd);
+            }
+            if(number.Length ==15)
+            {
+                verifyAmex(twoFirstsLettersCreditCatd);
+            }
+            if(number.Length ==16)
+            {
+                verifyDiscover(fourFirstsLettersCreditCatd);
+                verifyMasterCard(twoFirstsLettersCreditCatd);
+            }
+            verifyExistence(creditCardFinder);
+        }
+        public static void verifyVisa(String numberCreditCard)
+        {
+            if(numberCreditCard.Equals("4"))
+            {
                 Console.WriteLine("Visa");
-                }
-                else
-                {
-                    if(number.Substring(0, 2).Equals("34") || number.Substring(0, 2).Equals("37"))
-                    {
-                        Console.WriteLine("AMEX");
-                    }
-                    else
-                    {
-                        if(number.Substring(0, 4).Equals("6011"))
-                        {
-                            Console.WriteLine("Discover");
-                        }
-                        else
-                        {
-                            auxnumbercard = Convert.ToInt32(number.Substring(0, 2));
-                            if(number.Substring(0, 2).Equals("51"))
-                            {
-                                Console.WriteLine("Mastercard");
-                            }
-                            else
-                            {
-                                Console.WriteLine("unknown");
-                            }
-                        }
-                    }
-                }
+                creditCardFinder = true;
+            }
+        }
+        public static void verifyAmex(String numberCreditCard)
+        {
+            if(numberCreditCard.Equals("34") || numberCreditCard.Equals("37"))
+            {
+                Console.WriteLine("AMEX");
+                creditCardFinder = true;
+            }
+        }
+        public static void verifyDiscover(String numberCreditCard)
+        {
+            if(numberCreditCard.Equals("6011"))
+            {
+                Console.WriteLine("Discover");
+                creditCardFinder = true;
+            }
+        }
+        public static void verifyMasterCard(String numberCreditCard)
+        {
+            if(numberCreditCard.Equals("51"))
+            {
+                Console.WriteLine("Mastercard");
+                creditCardFinder = true;
+            }
+        }
+        public static void verifyExistence(bool finderNumberCreditCard)
+        {
+            if(finderNumberCreditCard == false)
+            {
+                Console.WriteLine("unknown");
             }
             else
             {
-                Console.WriteLine("unknown"); 
+                Console.WriteLine("Well Done!");
+                creditCardFinder = false;
             }
         }
     }
