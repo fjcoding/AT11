@@ -4,13 +4,13 @@ namespace csharp
 {   
     class Program
     {
-		static string GetIssuer(Int64 card)
-        {
-            string num;
-            int num_aux;
-            num = Convert.ToString(card);
 
-            if ((num.Substring(0,2)=="34"|| num.Substring(0, 2)=="37")&&(num.Length==15))
+        static string GetIssuer(Int64 card)
+        {
+            string num = Convert.ToString(card);;
+            int num_aux;
+
+            if ((num.Substring(0,2) == "34" || num.Substring(0, 2) == "37") && (num.Length == 15))
             {
                 return "AMEX";
             }
@@ -23,13 +23,13 @@ namespace csharp
                 else
                 {
                     num_aux = Convert.ToInt32(num.Substring(0, 2));
-                    if ((num_aux>50&&num_aux<56)&& (num.Length==16))
+                    if ((num_aux>50 && num_aux<56) && (num.Length == 16))
                     {
                         return "MASTERCARD";
                     }
                     else
                     {
-                        if (num.Substring(0, 1) == "4" && (num.Length >12&& num.Length <17) )
+                        if (num.Substring(0, 1) == "4" && (num.Length >12 && num.Length <17) )
                         {
                             return "VISA";
                         }
