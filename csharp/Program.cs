@@ -13,10 +13,10 @@ namespace csharp
 
         public static string getIssuer(string numberCard)
         {
-            string op1 = numberCard[0].ToString();
-            string op2 = numberCard[1].ToString();
+            string indice1 = numberCard[0].ToString();
+            string indice2 = numberCard[1].ToString();
 
-            switch (op1)
+            switch (indice1)
             {
                 case "4":
                 {
@@ -28,7 +28,7 @@ namespace csharp
                 }
                 case "3":
                 {
-                    if (((op2=="4") || (op2 == "7")) && (Credit Card.Length == 15))
+                    if (((indice2=="4") || (indice2 == "7")) && (numberCard.Length == 15))
                     {
                         return "Credit Card AMEX";
                     }
@@ -36,7 +36,7 @@ namespace csharp
                 }
                 case "5":
                 {
-                    if (((op2 == "1") || (op2 == "2") || (op2 == "3") || (op2 == "4") || (op2 == "5")) && (numberCard.Length == 16))
+                    if (((indice2 == "1") || (indice2 == "2") || (indice2 == "3") || (indice2 == "4") || (indice2 == "5")) && (numberCard.Length == 16))
                     {
                         return "Credit Card MasterCard";
                     }
@@ -44,7 +44,7 @@ namespace csharp
                 }
                 case "6":
                 {
-                    if (((numberCard[1].ToString() == "0") && (numberCard[2].ToString() == "1") || (numberCard[3].ToString() == "1") ) && (numberCard.Length == 16))
+                    if (((indice1 == "0") && (indice2.ToString() == "1") || (numberCard[3].ToString() == "1") ) && (numberCard.Length == 16))
                     {
                         return "Credit Card Discovery";
                     }
