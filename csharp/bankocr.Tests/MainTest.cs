@@ -13,11 +13,23 @@ namespace bankocr.Tests
             _main = new Main();
         }
 
+        // [Fact]
+        // public void Test1()
+        // {
+        //     var result = _main.returnTrue();
+        //     Assert.True(result, "Result must be 'true'");
+        // }
         [Fact]
-        public void Test1()
+        public void testScanner()
         {
-            var result = _main.returnTrue();
-            Assert.True(result, "Result must be 'true'");
+            string expected = "123456789";
+            string stringNumber =
+           "    _  _     _  _  _  _  _ \n"+
+           "  | _| _||_||_ |_   ||_||_|\n"+
+           "  ||_  _|  | _||_|  ||_| _|";
+
+           string result = _main.verifyNumber(stringNumber);
+           Assert.Equal(result, expected);
         }
     }
 }
