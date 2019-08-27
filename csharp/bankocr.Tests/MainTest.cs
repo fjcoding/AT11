@@ -12,13 +12,7 @@ namespace bankocr.Tests
         {
             _main = new Main();
         }
-
-        // [Fact]
-        // public void Test1()
-        // {
-        //     var result = _main.returnTrue();
-        //     Assert.True(result, "Result must be 'true'");
-        // }
+        
         [Fact]
         public void testScanner()
         {
