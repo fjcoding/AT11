@@ -6,14 +6,17 @@ public class Person
     public string fullName;
     
     public Person(){}
-    public void setFirstName(string inputfirstName)
-    {
-       this.firstName = inputfirstName;
-    }
 
-    public string getFirstName()
+    public Person(string firstName,string lastName)
     {
-       return this.firstName;
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
+    
+    public string FirstName
+    {
+        get { return firstName; }
+        set { firstName = value; }
     }
     
    
@@ -23,26 +26,32 @@ public class Person
         set { lastName = value; }
     }
     
+    public string FullName
+    {
+        get { return fullName; }
+        set { fullName = value; }
+    }
     public string NamedOne(String firstName, String lastName)
     {
-        return firstName+" "+lastName;
+        this.fullName = firstName+" "+lastName;
+        return this.FullName;
     }
 
-    public Person ReturnObjectPerson(string inputFirstName, string inputLastName)
+    /* public Person ReturnObjectPerson(string inputFirstName, string inputLastName)
     {
         Person myperson = new Person();
         myperson.firstName = inputFirstName;
         myperson.lastName = inputLastName;
         myperson.fullName = inputFirstName + " " + inputLastName;
         return myperson;
-    }
+    }*/
 
-    public Person ReturnObjectPerson(string inputFullName)
+    /*public Person ReturnObjectPerson(string inputFullName)
     {
         Person myperson = new Person();
         myperson.firstName = inputFirstName;
         myperson.lastName = inputLastName;
         myperson.fullName = inputFirstName + " " + inputLastName;
         return myperson;
-    }
+    }*/
 }
