@@ -31,5 +31,16 @@ namespace TestPerson.Tests
             Assert.Equal(expected,myPerson.fullName);
 
         } 
+        [Fact]
+        public void WhenUpDateLasttName()
+        {
+            Person myPerson = new Person();
+            myPerson.FirstName ="Ana";
+            myPerson.lastName = "Wong";
+            myPerson.UpdateLastName("Due");
+            var expected = "Ana Due";
+            Assert.Equal(expected,myPerson.fullName);
+
+        } 
     }
 }

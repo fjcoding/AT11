@@ -47,6 +47,13 @@ public class Person
         this.firstName = inputFirstName;
         this.fullName = inputFirstName + " " + this.LastName;
     }
+    public void UpdateLastName(string inputLastName)
+    {
+        this.lastName = inputLastName;
+        this.fullName = this.firstName + " " + this.lastName;
+        
+    }
+    
     /*public Person ReturnObjectPerson(string inputFullName)
     {
         Person myperson = new Person();
