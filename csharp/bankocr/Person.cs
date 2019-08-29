@@ -20,14 +20,31 @@ namespace bankocr
         public void setFirstName(string inputFirstName)
         {
             this.firstName = inputFirstName;
+            this.setFullName();
+        }
+        public string getFirstName()
+        {
+            return this.firstName;
         }
         public void setLastName(string inputLastName)
         {
             this.lastName = inputLastName;
+            this.setFullName();
         }
-        public void setFullName()
+        private void setFullName()
         {
             this.fullName = this.firstName + " " + this.lastName;
+        }
+        public Person setFullName(string inputFullName)
+        {
+            int rowFirstName = 0;
+            int rowLastName = 1;
+            string [] fullNameSplit = inputFullName.Split(' ');
+
+            this.setFirstName(fullNameSplit[rowFirstName]);
+            this.setLastName(fullNameSplit[rowLastName]);
+
+            return this;
         }
         public string getFullName()
         {

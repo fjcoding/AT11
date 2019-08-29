@@ -23,7 +23,6 @@ namespace TestPerson.Tests
         {
             Person person = _person.NamedOne("Naomi","Wang");
             person.setFirstName("John");
-            person.setFullName();
 
             string expected = "John Wang";
             string result = person.getFullName();
@@ -35,10 +34,19 @@ namespace TestPerson.Tests
         {
             Person person = _person.NamedOne("John","Wang");
             person.setLastName("Doe");
-            person.setFullName();
 
             string expected = "John Doe";
             string result = person.getFullName();
+
+            Assert.Equal(expected,result);
+        }
+        [Fact]
+        public void WhenIPutFullNameReturnObject()
+        {
+            Person person = _person.setFullName("Bill Smith");
+
+            string expected = "Bill";
+            string result = person.getFirstName();
 
             Assert.Equal(expected,result);
         }
