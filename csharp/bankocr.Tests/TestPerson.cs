@@ -15,19 +15,21 @@ namespace TestPerson.Tests
         public void WhenAddFirstLastNameThenReturnFullName()
         {
             Person myPerson = new Person(); 
-            var result = myPerson.NamedOne("Jhon","Due");
+            Person result = myPerson.NamedOne("Jhon","Due");
             var expected = "Jhon Due";
-            Assert.Equal(expected,myPerson.fullName);
+            Assert.Equal(expected,result.fullName);
         }
-        /*
+        
         [Fact]
-        public void WhenAddFullNameReturnFirstLastName()
+        public void WhenUpDateFirstName()
         {
             Person myPerson = new Person();
-            Person result = myPerson.ReturnObjectPerson("Jhon Due");
+            myPerson.FirstName ="Ana";
+            myPerson.lastName = "Wong";
+            myPerson.UpdateFirstName("Jhon");
+            var expected = "Jhon Wong";
+            Assert.Equal(expected,myPerson.fullName);
 
-            Assert.Equal("Jhon",result.firstName);
-            Assert.Equal("Due",result.lastName);
-        } */
+        } 
     }
 }

@@ -31,21 +31,22 @@ public class Person
         get { return fullName; }
         set { fullName = value; }
     }
-    public string NamedOne(String firstName, String lastName)
-    {
-        this.fullName = firstName+" "+lastName;
-        return this.FullName;
-    }
-
-    /* public Person ReturnObjectPerson(string inputFirstName, string inputLastName)
+    public Person NamedOne(String firstName, String lastName)
     {
         Person myperson = new Person();
-        myperson.firstName = inputFirstName;
-        myperson.lastName = inputLastName;
-        myperson.fullName = inputFirstName + " " + inputLastName;
+        myperson.firstName = firstName;
+        myperson.lastName = lastName;
+        myperson.fullName = myperson.firstName + " " + myperson.lastName;
         return myperson;
-    }*/
+    }
+    
 
+    public void UpdateFirstName(string inputFirstName)
+    {
+        //Person myperson = new Person();
+        this.firstName = inputFirstName;
+        this.fullName = inputFirstName + " " + this.LastName;
+    }
     /*public Person ReturnObjectPerson(string inputFullName)
     {
         Person myperson = new Person();
