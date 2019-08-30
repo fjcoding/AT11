@@ -1,17 +1,18 @@
 using System;
 public class Person
 {
-    public string firstName ;
-    public string lastName;
-    public string fullName;
+    private string firstName ;
+    private string lastName;
+    private string fullName;
     
+
     public Person(){}
 
-    public Person(string firstName,string lastName)
-    {
-        this.firstName=firstName;
-        this.lastName=lastName;
-    }
+    //public Person(string firstName,string lastName)
+    //{
+     //   this.firstName=firstName;
+     //   this.lastName=lastName;
+    //}
     
     public string FirstName
     {
@@ -34,12 +35,11 @@ public class Person
     public Person NamedOne(String firstName, String lastName)
     {
         Person myperson = new Person();
-        myperson.firstName = firstName;
-        myperson.lastName = lastName;
-        myperson.fullName = myperson.firstName + " " + myperson.lastName;
+        myperson.FirstName = firstName;
+        myperson.LastName = lastName;
+        myperson.FullName = myperson.FirstName + " " + myperson.LastName;
         return myperson;
     }
-    
 
     public void UpdateFirstName(string inputFirstName)
     {
@@ -54,12 +54,13 @@ public class Person
         
     }
     
-    /*public Person ReturnObjectPerson(string inputFullName)
+    public void UpDateFirstNameAndLastName(string inputFullName)
     {
-        Person myperson = new Person();
-        myperson.firstName = inputFirstName;
-        myperson.lastName = inputLastName;
-        myperson.fullName = inputFirstName + " " + inputLastName;
-        return myperson;
-    }*/
+        
+        int indexfullnamesplit = 0;
+        string [] fullnamesplit = inputFullName.Split(' ');
+        this.firstName = fullnamesplit[indexfullnamesplit];
+        this.lastName = fullnamesplit[indexfullnamesplit+1]; 
+
+    }
 }

@@ -6,10 +6,10 @@ namespace TestPerson.Tests
 {
     public class TestPerson
     {
-        private readonly Person _person;
+       // private readonly Person _person;
         public TestPerson()
         {
-            _person = new Person();    
+          //  _person = new Person();    
         }
         [Fact]
         public void WhenAddFirstLastNameThenReturnFullName()
@@ -17,7 +17,7 @@ namespace TestPerson.Tests
             Person myPerson = new Person(); 
             Person result = myPerson.NamedOne("Jhon","Due");
             var expected = "Jhon Due";
-            Assert.Equal(expected,result.fullName);
+            Assert.Equal(expected,result.FullName);
         }
         
         [Fact]
@@ -25,10 +25,10 @@ namespace TestPerson.Tests
         {
             Person myPerson = new Person();
             myPerson.FirstName ="Ana";
-            myPerson.lastName = "Wong";
+            myPerson.LastName = "Wong";
             myPerson.UpdateFirstName("Jhon");
             var expected = "Jhon Wong";
-            Assert.Equal(expected,myPerson.fullName);
+            Assert.Equal(expected,myPerson.FullName);
 
         } 
         [Fact]
@@ -36,10 +36,23 @@ namespace TestPerson.Tests
         {
             Person myPerson = new Person();
             myPerson.FirstName ="Ana";
-            myPerson.lastName = "Wong";
+            myPerson.LastName = "Wong";
             myPerson.UpdateLastName("Due");
             var expected = "Ana Due";
-            Assert.Equal(expected,myPerson.fullName);
+            Assert.Equal(expected,myPerson.FullName);
+
+        } 
+        [Fact]
+        public void WhenUpDateFullName()
+        {
+            Person myPerson = new Person();
+            myPerson.FirstName ="Ana";
+            myPerson.LastName = "Wong";
+            myPerson.UpDateFirstNameAndLastName("Alan Escalera");
+            var expectedFirstName = "Alan";
+            var expectedLastName = "Escalera";
+            Assert.Equal(expectedFirstName,myPerson.FirstName);
+            Assert.Equal(expectedLastName,myPerson.LastName);
 
         } 
     }
