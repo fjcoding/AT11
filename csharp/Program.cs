@@ -1,8 +1,9 @@
 ﻿using System;
 
 namespace csharp
-{
-    public class Program
+
+{   
+    class Program
     {
         static void Main(string[] args)
         {
@@ -95,12 +96,11 @@ namespace csharp
             Console.WriteLine(getIssuer(5105105105105106));
             Console.WriteLine(getIssuer(9111111111111111));
         }
-
         public static void getIssuer(String number)
         {
             String onefirstLetterCreditCatd = numberCreditCard.Substring(0, 1);
             String twoFirstsLettersCreditCatd = numberCreditCard.Substring(0, 2);
-            String fourFirstsLettersCreditCatd = numberCreditCard.Substring(0, 4)
+            String fourFirstsLettersCreditCatd = numberCreditCard.Substring(0, 4);
             if(number.Length == 13 || number.Length == 16)
             {
                 verifyVisa(onefirstLetterCreditCatd);
