@@ -6,7 +6,7 @@ namespace bankocr
     {
         public bool returnTrue()
         {
-            throw new NotImplementedException("Create a test first");
+            return true;
         }
     }
 }
