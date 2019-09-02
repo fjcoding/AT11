@@ -38,10 +38,32 @@ namespace TestGuest.Tests
             var result = objectguest.ReturnInviteMoreWomen(guests);
             var expected = false;
             Assert.Equal(expected, result);
-
-
         }
-        
+
+         [Fact]
+        public void WhenSizeOfListIsBigerThanFifty()
+        {
+            Guest objectguest = new Guest();
+            int [] guests = {-1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
+                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
+                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
+                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
+                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
+                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1};
+            var result = objectguest.ReturnInviteMoreWomen(guests);
+            var expected = false;
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+         public void WhenSizeOfListIsSmallerThanTwo()
+        {
+            Guest objectguest = new Guest();
+            int [] guests = {-1};
+            var result = objectguest.ReturnInviteMoreWomen(guests);
+            var expected = false;
+            Assert.Equal(expected, result);
+        }
         
     }
 }

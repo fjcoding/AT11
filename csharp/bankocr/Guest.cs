@@ -11,6 +11,10 @@ public class Guest
         this.man = 1;
         int countwoman = 0;
         int countman = 0;
+        int sizeguestlist = inputGuestList.Length;
+        if((sizeguestlist<2) || (sizeguestlist > 50) )
+        return true;
+        
         for (int items = 0; items < inputGuestList.Length; items++)
         {   
             if (inputGuestList[items] == woman)
