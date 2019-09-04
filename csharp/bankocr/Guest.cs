@@ -1,33 +1,36 @@
 using System;
 public class Guest
 {
-     private int woman;
-     private int man;
+    private const int woman = -1;
+    private const int man = 1;
     public Guest()
-    {}
-    public bool ReturnInviteMoreWomen(int [] inputGuestList)
     {
-        this.woman = -1;
-        this.man = 1;
-        int countwoman = 0;
-        int countman = 0;
-        int sizeguestlist = inputGuestList.Length;
-        if((sizeguestlist<2) || (sizeguestlist > 50) )
-        return true;
-        
+
+    }
+    public bool VerifyAmountOfGuests(int [] inputGuestList)
+    {
+        int countWoman = 0;
+        int countMan = 0;
+                       
         for (int items = 0; items < inputGuestList.Length; items++)
         {   
-            if (inputGuestList[items] == woman)
-                countwoman++;
-            if(inputGuestList[items] == man)
-                countman++;
+            countMan += counterOfMen(inputGuestList[items]);
+            countWoman += counterOfWomen(inputGuestList[items]);
         }
-        if(countman <= countwoman)
-            return false;
-        return true;
-
-        
-
-
+        return countWoman < countMan;
+    }
+    private int counterOfMen (int count)
+    {
+        int count_man = 0;
+        if(count == 1)
+            count_man++;
+        return count_man;
+    }
+    private int counterOfWomen (int count)
+    {
+        int count_women = 0;
+        if(count == -1)
+            count_women++;
+        return count_women;
     }
 }

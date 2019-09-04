@@ -6,61 +6,35 @@ namespace TestGuest.Tests
 {
     public class TestGuest
     {
+        readonly private Guest _guest; 
         public TestGuest()
         {
-
+               _guest = new Guest();
         }
+
         [Fact]
-        public void WhenThereAreManyMenThanWomen()
+        public void WhenThereAreManyMenThanWomenReturnTrue()
         {
-            Guest objectguest = new Guest();
             int [] guests = {-1, -1, -1, -1, 1, 1, 1, 1, 1, 1};
-            var result = objectguest.ReturnInviteMoreWomen(guests);
+            var result = _guest.VerifyAmountOfGuests(guests);
             var expected = true;
             Assert.Equal(expected, result);
         }
         
         [Fact]
-        public void WhenThereAreManyWomenThanMen()
+        public void WhenThereAreManyWomenThanMenReturnFalse()
         {
-            Guest objectguest = new Guest();
             int [] guests = {-1, -1, -1, -1, -1, -1, -1, 1, 1, 1};
-            var result = objectguest.ReturnInviteMoreWomen(guests);
+            var result = _guest.VerifyAmountOfGuests(guests);
             var expected = false;
             Assert.Equal(expected, result);
         } 
 
         [Fact]
-        public void WhenThereAreTheSameWomenAndMen()
+        public void WhenThereAreTheSameWomenAndMenReturnFalse()
         {
-            Guest objectguest = new Guest();
             int [] guests = {-1, -1, -1, -1, -1, 1, 1, 1, 1, 1};
-            var result = objectguest.ReturnInviteMoreWomen(guests);
-            var expected = false;
-            Assert.Equal(expected, result);
-        }
-
-         [Fact]
-        public void WhenSizeOfListIsBigerThanFifty()
-        {
-            Guest objectguest = new Guest();
-            int [] guests = {-1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
-                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
-                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
-                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
-                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1,
-                            -1, -1, -1, -1, -1, 1, 1, 1, 1, 1};
-            var result = objectguest.ReturnInviteMoreWomen(guests);
-            var expected = false;
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-         public void WhenSizeOfListIsSmallerThanTwo()
-        {
-            Guest objectguest = new Guest();
-            int [] guests = {-1};
-            var result = objectguest.ReturnInviteMoreWomen(guests);
+            var result = _guest.VerifyAmountOfGuests(guests);
             var expected = false;
             Assert.Equal(expected, result);
         }
