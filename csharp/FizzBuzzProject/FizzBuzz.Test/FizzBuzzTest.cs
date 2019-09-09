@@ -34,5 +34,18 @@ namespace FizzBuzz.Test
         {
             Assert.True(_fizzBuzzMethods.validateThatNumberIsBetweenOneAndOneHundred(80));
         }
+
+        [Fact]
+        public void TestValidateMultipleOfThreeAndContainsThree()
+        {
+            Assert.True(_fizzBuzzMethods.validateMultipleOfThreeAndContainsThree("30"));
+        }
+
+        [Fact]
+        public void TestValidateMultipleOfFiveAndContainsFive()
+        {
+            Assert.True(_fizzBuzzMethods.validateMultipleOfFiveAndContainsFive("55"));
+        }
+        
     }
 }

@@ -34,5 +34,13 @@ namespace FizzBuzzService
         {
             return number > 0 && number < 101;
         }
+        public bool validateMultipleOfThreeAndContainsThree(string number)
+        {
+            return _multiple.MultipleOfThreeAndContainsThree(number);
+        }
+        public bool validateMultipleOfFiveAndContainsFive(string number)
+        {
+            return _multiple.MultipleOfFiveAndContainsFive(number);
+        }    
     }
 }
