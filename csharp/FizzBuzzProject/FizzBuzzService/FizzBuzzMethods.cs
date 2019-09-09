@@ -41,6 +41,20 @@ namespace FizzBuzzService
         public bool validateMultipleOfFiveAndContainsFive(string number)
         {
             return _multiple.MultipleOfFiveAndContainsFive(number);
-        }    
+        }
+        public string returnNumberIfNotMultipleOfThree(int number)
+        {
+            string returnFizz = Convert.ToString(number);
+            if(_multiple.MultipleOfThree(number) == true)
+                returnFizz = "Fizz";
+            return returnFizz;
+        }
+        public string returnNumberIfNotMultipleOfFive(int number)
+        {
+            string returnFizz = Convert.ToString(number);
+            if(_multiple.MultipleOfFive(number) == true)
+                returnFizz = "Buzz";
+            return returnFizz;
+        }
     }
 }

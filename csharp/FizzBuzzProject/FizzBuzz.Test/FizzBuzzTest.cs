@@ -46,6 +46,17 @@ namespace FizzBuzz.Test
         {
             Assert.True(_fizzBuzzMethods.validateMultipleOfFiveAndContainsFive("55"));
         }
+
+        [Fact]
+        public void TestReturnNumberIfNotMultipleOfThree()
+        {
+            Assert.Equal("1",_fizzBuzzMethods.returnNumberIfNotMultipleOfThree(1));
+        }
         
+        [Fact]
+        public void TestReturnNumberIfNotMultipleOfFive()
+        {
+            Assert.Equal("8",_fizzBuzzMethods.returnNumberIfNotMultipleOfFive(8));
+        }
     }
 }
