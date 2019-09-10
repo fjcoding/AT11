@@ -1,9 +1,18 @@
 using System;
+using System.Collections.Generic;
 
 namespace CodeCrackerMain
 {
     public class Encripter
     {
+        Code _codeletters;
+        List<Code> listcodeTable; 
+        public Encripter()
+        {
+            _codeletters = new Code();
+             listcodeTable = _codeletters.tableCodeLetters();
+             
+        }
         public string EncryptALetter(string input_leters)
         {
             int lengthOfCut = 1;
@@ -21,7 +30,8 @@ namespace CodeCrackerMain
             return stringOfLetters;
            
         }
-        private string comparingLetters(string letter_input)
+
+               private string comparingLetters(string letter_input)
         {
             string letter = "Error!";
            
@@ -82,6 +92,58 @@ namespace CodeCrackerMain
             }
             return letter;
 
+        }
+         public string EncryptLetterFromList(string input_leters)
+        {
+            int lengthOfCut = 1;
+            string inputsLetters = input_leters;
+            string stringOfLetters = "";
+            string lettercut;
+            for (int items = 0; items < inputsLetters.Length; items++)
+            {   
+                lettercut = inputsLetters.Substring(items, lengthOfCut);
+                if(GetLetter(lettercut).Equals("Error!"))
+                    return GetLetter(lettercut);
+                stringOfLetters += GetLetter(lettercut);
+            }
+            return stringOfLetters;
+           
+        }
+
+        public string GetLetter(string letter)
+        {
+           
+            bool found = false;
+            int items = 0;
+
+            while(found == false && items < listcodeTable.Count)
+            {
+                if(listcodeTable[items].letterSimple == letter)
+                    found = true;
+                items++;
+            }
+            if(found)
+                return listcodeTable[items].letterEncripted;
+            return "Error!";
+        }
+        public string ChangeLetterOfEncription(string letterSimple, string lettertoChange)
+        {
+            //Code tablecodetochage = new Code();
+            int items = 0;
+            bool found = false;
+
+            while (found ==false && items < listcodeTable.Count)
+            {
+                if(listcodeTable[items].letterSimple == letterSimple)
+                    found = true;
+                items++;
+            }
+            if(found)
+            {
+                listcodeTable[items].letterEncripted = lettertoChange;
+                return "Letter Changed";
+            }
+            return "Letter NO Found";
         }
     }
 }

@@ -67,5 +67,31 @@ namespace CodeCrackerMain.Tests
             var expected = "Error!";
             Assert.Equal(expected,result);
         }
+        
+        [Fact]
+        public void EncryptLetterFromList()
+        {
+            string letter = "helloworld";
+            var result = _encripter.EncryptALetter(letter);
+            var expected = "&£aadldga(";
+            Assert.Equal(expected,result);
+        }
+         [Fact]
+        public void WhenSendALeterReturnChanged()
+        {
+            string chooseletter = "a";
+            string letertochange = ":";
+            string IfLetterChanged = _encripter.ChangeLetterOfEncription(chooseletter,letertochange);
+            //a b c d e f g h i j k l m n o p q r s t u v w x y z
+            //! ) $ ( £ * % & > < @ a b c d e f g h i j k l m n o 
+            string letter = "a";
+            var result = _encripter.EncryptLetterFromList(letter);
+            var expected = ":";
+            Assert.Equal("Letter Changed",IfLetterChanged);
+            Assert.Equal(expected,result);
+            
+        }
+
+
     }
 }
