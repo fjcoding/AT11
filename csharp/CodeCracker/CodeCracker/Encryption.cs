@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic; 
 
 namespace CodeCracker
 {
@@ -8,17 +9,19 @@ namespace CodeCracker
         char [] message;
         int lengthMessage;
         int lengthAlphabet;
-        private char [] alphabet = new char [26]  { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
-                                                    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                                                    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        private char [] decryptionKey = new char [26]  { '!', ')', '"', '(', '£', '*', '%', '&',
-                                                         '>', '<', '@', 'a', 'b', 'c', 'd', 'e', 'f',
-                                                         'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'};  
-        
+
+        private List<Key> alphabet = new List<Key>();
+        private List<Key> decryptionKey = new List<Key>();
+
         public Encryption(){}
 
-        public string getMessageEncrypted(string MessageEncrypted)
+        public string getMessageEncrypted(string MessageEncrypted, string decriptionKey)
         {
+            KeyList keylist = new KeyList();
+
+            alphabet = keylist.getAlphabet();
+            decryptionKey = keylist.fillDecryptionKey(decriptionKey);
+
             message = MessageEncrypted.ToCharArray();
 
             encriptorMessage();
@@ -38,18 +41,18 @@ namespace CodeCracker
         }
         private void finderLetterInDecryptionKey(char letterMessage, int indexMessage)
         {
-            lengthAlphabet = alphabet.Length;
+            lengthAlphabet = alphabet.Count;
 
             for (int i = 0; i < lengthAlphabet; i++)
             {
-                decryptorLetter(letterMessage, alphabet[i], i, indexMessage);
+                encryptLetter(letterMessage, alphabet[i].getCharacter(), decryptionKey[i], indexMessage);
             }
         }
-        private void decryptorLetter(char letterMessage, char letterAlphabet, int indexDecryptionKey, int indexMessage)
+        private void encryptLetter(char letterMessage, char letterAlphabet, Key letterDecryptionKey, int indexMessage)
         {
             if (letterMessage.Equals(letterAlphabet))
             {
-                message[indexMessage] = decryptionKey[indexDecryptionKey];
+                message[indexMessage] = letterDecryptionKey.getCharacter();
             }
         }
     }

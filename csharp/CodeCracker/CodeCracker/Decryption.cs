@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic; 
 
 namespace CodeCracker
 {
@@ -8,17 +9,19 @@ namespace CodeCracker
         char [] message;
         int lengthMessage;
         int lengthDecryptionKey;
-        private char [] alphabet = new char [26]  { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
-                                                    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                                                    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        private char [] decryptionKey = new char [26]  { '!', ')', '"', '(', '£', '*', '%', '&',
-                                                         '>', '<', '@', 'a', 'b', 'c', 'd', 'e', 'f',
-                                                         'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'};  
+
+        List<Key> alphabet = new List<Key>();
+        List<Key> decryptionKey = new List<Key>();
         
         public Decryption(){}
 
-        public string getMessageDecrypted(string MessageEncrypted)
+        public string getMessageDecrypted(string MessageEncrypted, string decriptionKey)
         {
+            KeyList keylist = new KeyList();
+
+            alphabet = keylist.getAlphabet();
+            decryptionKey = keylist.fillDecryptionKey(decriptionKey);
+
             message = MessageEncrypted.ToCharArray();
 
             decriptorMessage();
@@ -38,18 +41,18 @@ namespace CodeCracker
         }
         private void finderLetterInAlphabet(char letterMessage, int indexMessage)
         {
-            lengthDecryptionKey = decryptionKey.Length;
+            lengthDecryptionKey = alphabet.Count;
 
             for (int i = 0; i < lengthDecryptionKey; i++)
             {
-                decryptorLetter(letterMessage, decryptionKey[i], i, indexMessage);
+                decryptorLetter(letterMessage, decryptionKey[i], alphabet[i], indexMessage);
             }
         }
-        private void decryptorLetter(char letterMessage, char letterDecryptionKey, int indexAlphabet, int indexMessage)
+        private void decryptorLetter(char letterMessage, Key letterDecryptionKey, Key leterAlphabet, int indexMessage)
         {
-            if (letterMessage.Equals(letterDecryptionKey))
+            if (letterMessage.Equals(letterDecryptionKey.getCharacter()))
             {
-                message[indexMessage] = alphabet[indexAlphabet];
+                message[indexMessage] = leterAlphabet.getCharacter();
             }
         }
     }

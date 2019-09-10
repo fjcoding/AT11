@@ -14,20 +14,36 @@ namespace CodeCracker.test
         [Fact]
         public void WhenInputEncryptedLetterReturnDecryptedLetter()
         {
-            string letterEncrypted = "!";
+            string decryptionKey =  "$)'(£*%&><@abcdefghijklmno"; 
+
+            string letterEncrypted = "$";
 
             var expected = "a";
-            var result = _decryption.getMessageDecrypted(letterEncrypted);
+            var result = _decryption.getMessageDecrypted(letterEncrypted, decryptionKey);
 
             Assert.Equal(expected, result);
         }
         [Fact]
-        public void WhenInputEncryptedMessageReturnDecryptedMessage()
+        public void WhenInputEncryptedMessageReturnDecryptedMessage_FirstDecrptionKey()
         {
+            string decryptionKey =  "$)'(£*%&><@abcdefghijklmno"; 
+
             string messageEncrypted = "&£aad ldga(";
 
             var expected = "hello world";
-            var result = _decryption.getMessageDecrypted(messageEncrypted);
+            var result = _decryption.getMessageDecrypted(messageEncrypted, decryptionKey);
+
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void WhenInputEncryptedMessageReturnDecryptedMessage_SecondDecrptionKey()
+        {
+            string decryptionKey =  "$)'(£*%&><@abcdefghijklmno"; 
+
+            string messageEncrypted = "$a£m";
+
+            var expected = "alex";
+            var result = _decryption.getMessageDecrypted(messageEncrypted, decryptionKey);
 
             Assert.Equal(expected, result);
         }
