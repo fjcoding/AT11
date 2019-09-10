@@ -93,7 +93,7 @@ namespace CodeCrackerMain
             return letter;
 
         }
-         public string EncryptLetterFromList(string input_leters)
+        public string EncryptLetterFromList(string input_leters)
         {
             int lengthOfCut = 1;
             string inputsLetters = input_leters;
@@ -114,13 +114,14 @@ namespace CodeCrackerMain
         {
            
             bool found = false;
-            int items = 0;
+            int items = -1;
 
             while(found == false && items < listcodeTable.Count)
             {
+                items++;
                 if(listcodeTable[items].letterSimple == letter)
                     found = true;
-                items++;
+                
             }
             if(found)
                 return listcodeTable[items].letterEncripted;
@@ -129,14 +130,15 @@ namespace CodeCrackerMain
         public string ChangeLetterOfEncription(string letterSimple, string lettertoChange)
         {
             //Code tablecodetochage = new Code();
-            int items = 0;
+            int items = -1;
             bool found = false;
 
             while (found ==false && items < listcodeTable.Count)
             {
+                items++;
                 if(listcodeTable[items].letterSimple == letterSimple)
                     found = true;
-                items++;
+                   
             }
             if(found)
             {

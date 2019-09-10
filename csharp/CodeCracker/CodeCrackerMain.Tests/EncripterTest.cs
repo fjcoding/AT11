@@ -69,14 +69,15 @@ namespace CodeCrackerMain.Tests
         }
         
         [Fact]
-        public void EncryptLetterFromList()
+        public void EncryptingLetterFromTheList()
         {
+            
             string letter = "helloworld";
-            var result = _encripter.EncryptALetter(letter);
+            var result = _encripter.EncryptLetterFromList(letter);
             var expected = "&£aadldga(";
             Assert.Equal(expected,result);
         }
-         [Fact]
+        [Fact]
         public void WhenSendALeterReturnChanged()
         {
             string chooseletter = "a";
@@ -88,6 +89,30 @@ namespace CodeCrackerMain.Tests
             var result = _encripter.EncryptLetterFromList(letter);
             var expected = ":";
             Assert.Equal("Letter Changed",IfLetterChanged);
+            Assert.Equal(expected,result);
+            
+        }
+         [Fact]
+        public void WhenSendthreeLetersReturnChanged()
+        {
+            string chooseletter1 = "a";
+            string letertochange1 = ":";
+            string whenLetterChanged1 = _encripter.ChangeLetterOfEncription(chooseletter1,letertochange1);
+             string chooseletter2 = "d";
+            string letertochange2 = "_";
+            string whenLetterChanged2 = _encripter.ChangeLetterOfEncription(chooseletter2,letertochange2);
+             string chooseletter3 = "t";
+            string letertochange3 = "+";
+            string whenLetterChanged3 = _encripter.ChangeLetterOfEncription(chooseletter3,letertochange3);
+            //a b c d e f g h i j k l m n o p q r s t u v w x y z
+            //! ) $ ( £ * % & > < @ a b c d e f g h i j k l m n o 
+            string letter = "adt";
+            var result = _encripter.EncryptLetterFromList(letter);
+            var expected = ":_+";
+            Assert.Equal("Letter Changed",whenLetterChanged1);
+            Assert.Equal("Letter Changed",whenLetterChanged2);
+            Assert.Equal("Letter Changed",whenLetterChanged3);
+
             Assert.Equal(expected,result);
             
         }
