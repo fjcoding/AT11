@@ -1,27 +1,35 @@
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 namespace bankocr
 {
-    public class EmployeeStore
+    public class EmployeeStore : Person
     {
-        private string name;
         private int age;
-        List<EmployeeStore> returnList = new List<EmployeeStore>();
-        List<string> returnNamesList = new List<string>();
+        private Supervisor supervisor;
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public Supervisor _Supervisor
+        {
+            get { return supervisor; }
+            set { supervisor = value; }
+        }
+        
+        List<EmployeeStore> listEmployees = new List<EmployeeStore>();
         const int ageValidForWorking = 18;
-        public EmployeeStore()
+        public EmployeeStore ()
         {
 
         }
-        public EmployeeStore(string inputName, int inputAge)
+
+        public EmployeeStore (string name, int inputAge, Supervisor inputSupervisor) : base(name)
         {
-            this.name = inputName;
             this.age = inputAge;
-        }
-
-        public List<EmployeeStore> resturnAllList(List<EmployeeStore> inputlist)
-        {
-            return inputlist;
+            this._Supervisor = inputSupervisor;
         }
 
         public List<EmployeeStore> returnListOfEmployeesOlderThan18Years(List<EmployeeStore> inputlist)
@@ -30,50 +38,60 @@ namespace bankocr
             {
                 if (item.age >= ageValidForWorking)
                 {
-                    returnList.Add(item);
+                    listEmployees.Add(item);
                 }
             }
-            return returnList;
+            return listEmployees;
         }
 
         public List<string> returnListOfEmployeesSortedByTheirName(List<EmployeeStore> inputlist)
         {
+            List<string> listEmployeesNames = new List<string>();
             foreach (var item in inputlist)
             {
-                if (item.age >= ageValidForWorking)
-                {
-                    returnNamesList.Add(item.name);
-                }
+                listEmployeesNames.Add(item.Name);
             }
-            return returnNamesList;
+            listEmployeesNames.Sort();
+            return listEmployeesNames;
         }
 
-        public List<string> returnListOfEmployeesTheirNamescapitalized(List<EmployeeStore> inputlist)
+        public List<string> returnListOfEmployeesWithTheirNamescapitalized(
+                                                    List<EmployeeStore> inputlist)
         {
+            List<string> listOfCapitalisedNames = new List<string>();
             foreach (var item in inputlist)
             {
-                if (item.age >= ageValidForWorking)
-                {
-                    string nameToUpper = item.name;
-                    returnNamesList.Add(nameToUpper.ToUpper());
-                }
+                string nameToUper = item.Name;
+                listOfCapitalisedNames.Add(nameToUper.ToUpper());
             }
-            return returnNamesList;
+            return listOfCapitalisedNames;
         }
 
         public List<string> returnListOfEmployeesTheirNamesDescending(List<EmployeeStore> inputlist)
         {
-            string nameToUpper = "";
+            List<string> listOfDesendingNames = new List<string>();
             foreach (var item in inputlist)
             {
-                if (item.age >= ageValidForWorking)
-                {
-                    nameToUpper = item.name;
-                    returnNamesList.Add(nameToUpper.ToUpper());
-                }
-                returnNamesList.Sort();
+                listOfDesendingNames.Add(item.Name);
             }
-            return returnNamesList;
+            listOfDesendingNames.Sort();
+            listOfDesendingNames.Reverse();
+            return listOfDesendingNames;
         }
+        public List<Supervisor> returnListOfSupervisorsWithTheirEmailAndPhoneWithEmployeesUnder18(
+                                                                List<EmployeeStore> inputlist)
+        {
+            List<Supervisor> supervisorList = new List<Supervisor>();
+            foreach (var item in inputlist)
+            {
+                if (item.age < 18)
+                {
+                    supervisorList.Add(item._Supervisor);
+                }
+            }
+            supervisorList.Distinct();
+            return supervisorList;
+        }
+        
     }
 }
