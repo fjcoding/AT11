@@ -12,7 +12,7 @@ namespace Employee.Test
         List<EmployeeStore> employeeList = new List<EmployeeStore>()
             {
                 new EmployeeStore("Max", 17, new Supervisor("Ariana", "Ariana@gmail.com", 74717171)),
-                // new EmployeeStore("Alex", 16, new Supervisor("Ariana", "Ariana@gmail.com", 74717171)),
+                new EmployeeStore("Alex", 16, new Supervisor("Ariana", "Ariana@gmail.com", 74717171)),
                 new EmployeeStore("Sepp", 18, new Supervisor("Ariana", "Ariana@gmail.com", 74717171)),
                 new EmployeeStore("Nina", 15, new Supervisor("Benita", "Benita@gmail.com", 69696587)),
                 new EmployeeStore("Mike", 51, new Supervisor("Benita", "Benita@gmail.com", 69696587)),
@@ -35,14 +35,13 @@ namespace Employee.Test
         [Fact]
         public void TestlistOfEmployeesOlderThan18Years()
         {
-            int secondExpectedRow = 1;
-            int fourthExpectedRow = 3;
             int firstResultRow = 0;
             int secondResultRow = 1;
+            int thirdResultRow = 2;
             var testEmployee = _employee.returnListOfEmployeesOlderThan18Years(employeeList);
-            Assert.Equal("Sepp", testEmployee[0].Name);
-            Assert.Equal("Mike", testEmployee[1].Name);
-            Assert.Equal("Franz", testEmployee[2].Name);
+            Assert.Equal("Sepp", testEmployee[firstResultRow].Name);
+            Assert.Equal("Mike", testEmployee[secondResultRow].Name);
+            Assert.Equal("Franz", testEmployee[thirdResultRow].Name);
         }
 
         [Fact]
@@ -50,12 +49,17 @@ namespace Employee.Test
         {
             int firstResultRow = 0;
             int secondResultRow = 1;
+            int thirdResultRow = 2;
+            int fourthResultRow = 3;
+            int fifthResultRow = 4;
+            int sixthResultRow = 5;
             var testEmployee = _employee.returnListOfEmployeesSortedByTheirName(employeeList);
-            Assert.Equal("Franz", testEmployee[firstResultRow]);
-            Assert.Equal("Max", testEmployee[secondResultRow]);
-            Assert.Equal("Mike", testEmployee[2]);
-            Assert.Equal("Nina", testEmployee[3]);
-            Assert.Equal("Sepp", testEmployee[4]);
+            Assert.Equal("Alex", testEmployee[firstResultRow]);
+            Assert.Equal("Franz", testEmployee[secondResultRow]);
+            Assert.Equal("Max", testEmployee[thirdResultRow]);
+            Assert.Equal("Mike", testEmployee[fourthResultRow]);
+            Assert.Equal("Nina", testEmployee[fifthResultRow]);
+            Assert.Equal("Sepp", testEmployee[sixthResultRow]);
         }
 
         [Fact]
@@ -63,12 +67,17 @@ namespace Employee.Test
         {
             int firstResultRow = 0;
             int secondResultRow = 1;
+            int thirdResultRow = 2;
+            int fourthResultRow = 3;
+            int fifthResultRow = 4;
+            int sixthResultRow = 5;
             var testEmployee = _employee.returnListOfEmployeesWithTheirNamescapitalized(employeeList);
             Assert.Equal("MAX", testEmployee[firstResultRow]);
-            Assert.Equal("SEPP", testEmployee[secondResultRow]);
-            Assert.Equal("NINA", testEmployee[2]);
-            Assert.Equal("MIKE", testEmployee[3]);
-            Assert.Equal("FRANZ", testEmployee[4]);
+            Assert.Equal("ALEX", testEmployee[secondResultRow]);
+            Assert.Equal("SEPP", testEmployee[thirdResultRow]);
+            Assert.Equal("NINA", testEmployee[fourthResultRow]);
+            Assert.Equal("MIKE", testEmployee[fifthResultRow]);
+            Assert.Equal("FRANZ", testEmployee[sixthResultRow]);
         }
 
         [Fact]
@@ -76,12 +85,17 @@ namespace Employee.Test
         {
             int firstResultRow = 0;
             int secondResultRow = 1;
+            int thirdResultRow = 2;
+            int fourthResultRow = 3;
+            int fifthResultRow = 4;
+            int sixthResultRow = 5;
             var testEmployee = _employee.returnListOfEmployeesTheirNamesDescending(employeeList);
             Assert.Equal("Sepp", testEmployee[firstResultRow]);
             Assert.Equal("Nina", testEmployee[secondResultRow]);
-            Assert.Equal("Mike", testEmployee[2]);
-            Assert.Equal("Max", testEmployee[3]);
-            Assert.Equal("Franz", testEmployee[4]);
+            Assert.Equal("Mike", testEmployee[thirdResultRow]);
+            Assert.Equal("Max", testEmployee[fourthResultRow]);
+            Assert.Equal("Franz", testEmployee[fifthResultRow]);
+            Assert.Equal("Alex", testEmployee[sixthResultRow]);
         }
 
         [Fact]
@@ -95,6 +109,20 @@ namespace Employee.Test
             Assert.Equal(74717171, testEmployee[firstResultRow].PhoneNumber);
             Assert.Equal("Benita@gmail.com", testEmployee[secondResultRow].Email);
             Assert.Equal(69696587, testEmployee[secondResultRow].PhoneNumber);
+        }
+
+        [Fact]
+        public void TestListofEmployeesUnder18AndHisOrHerPotentialReplacementemployeeNotUnder18()
+        {
+            int firstResultRow = 0;
+            int secondResultRow = 1;
+            int thirdResultRow = 2;
+            var testEmployee = _employee
+                                .returnListofEmployeesUnder18AndHisOrHerPotentialReplacementemployeeNotUnder18(
+                                employeeList);
+            Assert.Equal("Max=>Sepp", testEmployee[firstResultRow]);
+            Assert.Equal("Alex=>NO REPLACEMENT AVAILABLE", testEmployee[secondResultRow]);
+            Assert.Equal("Nina=>Mike", testEmployee[thirdResultRow]);
         }
     }
 }

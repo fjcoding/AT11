@@ -89,9 +89,39 @@ namespace bankocr
                     supervisorList.Add(item._Supervisor);
                 }
             }
-            supervisorList.Distinct();
-            return supervisorList;
+            var distinctList = supervisorList.GroupBy(sup => sup.Name)
+                                    .Select(g => g.First())
+                                    .ToList();
+            return distinctList;
         }
         
+        public List<string> returnListofEmployeesUnder18AndHisOrHerPotentialReplacementemployeeNotUnder18(
+                                                                List<EmployeeStore> inputlist)
+        {
+            List<string> employeesList = new List<string>();
+            List<EmployeeStore> listOlders=  new List<EmployeeStore>();
+            List<EmployeeStore> listYunger=  new List<EmployeeStore>();
+            foreach (var item in inputlist)
+            {
+                if (item.age < 18)
+                {
+                    listYunger.Add(item);
+                    continue;
+                }
+                listOlders.Add(item);
+            }
+            int cont = 0;
+            for (int item = 0; item < listYunger.Count; item++)
+            {
+                if (listYunger[item]._Supervisor.Name == listOlders[cont]._Supervisor.Name)
+                {
+                    employeesList.Add(listYunger[item].Name +"=>"+listOlders[cont].Name);
+                    cont++;
+                    continue;
+                }
+                employeesList.Add(listYunger[item].Name +"=>"+"NO REPLACEMENT AVAILABLE");
+            }
+            return employeesList;
+        }
     }
 }
